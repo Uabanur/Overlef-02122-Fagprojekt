@@ -1,0 +1,91 @@
+\subsection{Requirement specification (Mikkel)}
+
+% \begin{mdframed}[backgroundcolor=black!5]
+% Definerer væsentlige begreber indenfor problemdomænet og
+% afgrænser opgaven som skal løses. \\
+% Angiver funktionelle og ikke-funktionelle krav.
+% Kravene bør være testbare.
+% Disse kapitler skal kunne læses af \\
+% • “kunden” og af \\
+% • medstuderende/personer der skal vedligeholde jeres system. \\
+
+% De næste 2 afsnit udgør bindeledene mellem kravspecification og kildekoden. \\
+
+% Kravene bør \textbf{prioriteres}, så man kan se, hvad der er vigtigst at få implementeret hvis
+% man kommer i tidnød senere, og ikke kan nå at lave alt. Kravene skal nummereres, se
+% de let kan refereres i forbindelse med test. Det bør også klart fremgå "hvilket krav der
+% kommer af hvad", f.eks ved at liste brugsscenarier og under hvert scenarie angive de
+% afledte krav. Kravene bør være testbare ellers kan man jo ikke godtgøre at det færdige
+% produkt opfylder kravspecifikationen. Hvordan fejlhåndteringen skal være kommer også
+% naturligt ind her.
+%  \end{mdframed}
+
+Requirements are given already in the assignment specification \cite{case_slides}, and can be seen below. The specifications have been translated, as well as reordered and divided into groups.\\
+
+%% IKKE TEMPPORERY
+%% IKKE LSSTET
+\begin{mdframed}[backgroundcolor=black!5]
+\begin{enumerate}
+\item[$ $] \textbf{Users and accounts:}
+\item Create a new account for a user in the banking system.
+%\item Oprette en ny konto for en person i en given medlemsbank. 
+
+\item Edit information about the individual accounts, such as rate of interest.
+%\item Rette oplysninger om den enkelte konto (renteprocent, evt, navn på ejer)
+
+\item Delete an account, taking into consideration circumstances such as remaining account balance, debt, and so forth.
+%\item Nedlægge en konto, med de forholdsregler som bør tages i forhold til eksisterende saldo, gæld, etc.
+
+\item Show transaction history for the current week, as well as showing the account balance for a customer in the bank.
+%\item Visning af transaktioner for indeværende uge samt saldo på konto for en given bankkunde
+
+\item[$ $] \textbf{Transactions:}
+
+\item Perform insertions of money into an account, while keeping track of the account balance, and storing the transaction.
+%\item Udføre indsættelser  af beløb på konto (ajourføring af saldo og lagring af transaktion)
+
+\item Perform extractions of money from an account, while keeping track of the account balance, and storing the transaction.
+%\item Udføre udtog på konto (ajourføring af saldo og lagring af transaktion)
+
+\item Make sure an account never goes below 0,- and reject transactions that would make it go below 0,-.
+%\item Kontrol med, at en konto aldrig går under 0,-. En sådan transaktion skal afvises
+
+
+\item[$ $] \textbf{Currency:}
+
+\item Translate money from one currency to another for transactions.
+%\item Valutaomregning i forbindelse med transaktioner, hvis transaktionen foregår uden for kundens hjemland
+
+\item Be able to specity which currency to show account balance and transaction history.
+%\item Muligheden for at specificere i hvilken valuta, saldo og bevægelser skal vises.
+
+\item[$ $] \textbf{Maintenance and scalability:}
+
+\item Perform a batch-solution to archive transactions that are more than a week old.
+%\item Der skal endvidere udvikles en batch-løsning, som en gang om ugen kan arkivere ugens transaktioner på en arkiv-database, således at kun de nyeste transaktioner vises.
+
+\item The system must be scalable, and effectively be able to handle a million accounts.
+%\item Systemet skal være skalerbart og effektivt kunne håndtere en million konti
+\end{enumerate}
+
+\end{mdframed}
+%% DET ER EN DEL AF RAPPORTS
+%% DO NOT ELST
+
+Besides these, we added two requirements to the program.
+
+\begin{enumerate}
+    \item[$12.$] It must be intuitive to use, such that someone with no prior knowledge of the program can figure it out in 10 minutes or less, without guidance.
+    \item[$13.$] It must have at least a minimum of security, such as passwords being stored safely, and protection from SQL injection.
+\end{enumerate}
+
+%Most of these, we implemented directly, such as translating from one currency to another. 
+
+We chose to have the primary login for a user to go to a 'Customer' page, instead of having each individual account have a separate login. This made it so the functionality requirements relating to accounts have been re-purposed to work on all accounts a user has, as well as the individual account. 
+
+Requirement nr. 2 has been reinterpreted to incorporate administrative users. It is only administrative users that are able to edit certain account information, such as rate of interest. The customer is still able to edit which currency to show their account balance and transaction histories in.
+
+Requirement nr. 7 has been reinterpreted to incorporate credit for an account, allowing it to have a balance below 0,- as long as it has remaining credit in the bank. Similarly, a transaction that would make the account balance go below the account's specified credit will be denied. All accounts start with a bank credit of 0,- as in the functionality requirements, but can be changed by an administrator if necessary. 
+
+The batch-solution is not automated, but instead must be performed manually by an administrator on the system.
+

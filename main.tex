@@ -1,0 +1,122 @@
+\input{header.tex}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\input{frontpage.tex}
+
+\input{introduction/abstract.tex}
+
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\vfill
+
+\textit{Robert "Bob" Ross was a painter, television host, and internet celebrity.
+For decades, he hosted the American TV show The Joy of Painting, a show dedicated to landscape oil painting in a relaxing setting. Bob Ross is attributed the quote "There are no mistakes, only happy accidents."}
+
+\textit{When creating the logo and name of the bank, we chose the bank name Rob Boss to highlight the joy of using our net bank, just as Bob Ross highlighted the joy of painting. To avoid copyrights, we switched the initials. Ironically, these switched initials ended implying that the bank is a boss of robbing its customers.}
+
+\newpage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\setcounter{tocdepth}{2}
+
+
+\section{Introduction}
+\input{introduction/intro.tex}
+\input{introduction/context.tex}
+\input{introduction/motivation.tex}
+\input{introduction/goals.tex}
+\input{introduction/evaluation.tex}
+%\input{introduction/summaryconclusion.tex}
+
+
+%% PROB ANA AND REQ START
+\section{Problem analysis and requirements}\label{sec:problemanalysis_requirements}
+\input{requirements/problemanalysis.tex}
+\input{requirements/requirementsspecification.tex}
+%% PROB ANA AND REQ END
+
+%% IBM & GIVEN TOOLS START
+\section{IBM}\label{sec:ibm}
+\input{ibm/intro.tex}
+\input{ibm/mainframe.tex}
+\input{ibm/db2.tex}
+\input{ibm/zos.tex}
+\input{ibm/sysplex.tex}
+%\input{ibm/redbook.tex}
+%% IBM & GIVEN TOOLS END
+
+\section{Use cases (Jens Carl)}
+\label{sec:usecases}
+\input{design/usecases.tex}
+
+
+%% DESIGN SECTION START
+\newpage
+\section{Design}
+\label{sec:design}
+\input{design/intro.tex}
+\input{design/tools.tex}
+\input{design/mvc.tex}
+\input{design/modeldesign.tex}
+\input{design/viewdesign.tex}
+\input{design/controllerdesign.tex}
+\input{design/securitydesign.tex}
+%% DESIGN SECTION END
+
+%% IMPLEMENTATION SECTION START
+\newpage
+\section{Implementation}
+\input{implementation/intro.tex}
+\input{implementation/modelimp.tex}
+\input{implementation/viewimp.tex}
+\input{implementation/controllerimp.tex}
+\input{implementation/securityimp.tex}
+%% IMPLEMENTATION SECTION END
+
+%% TEST SECTION START
+\newpage
+\section{Test}
+\input{test/intro.tex}
+\input{test/testphilosophy.tex}
+\input{test/blackbox.tex}
+\input{test/functionality.tex}
+\input{test/performance.tex}
+%% TEST SECTION END
+
+%% PROJECT MANAGEMENT START
+\section{Project management and development}
+\label{sec:projectmanagement}
+\input{projectmanagement/intro.tex}
+\input{projectmanagement/log.tex}
+\input{projectmanagement/git.tex}
+\newpage
+\input{projectmanagement/evolution.tex}
+%% PROJECT MANAGEMENT END
+
+
+\newpage
+\section{Conclusion}
+\input{conclusion/design.tex}
+\input{conclusion/implementation.tex}
+\input{conclusion/test.tex}
+\input{conclusion/perspective.tex}
+
+\newpage
+\input{appendix/references.tex}
+
+\newpage
+%% APPENDIX START
+\section{Appendix}
+%\input{appendix/intro.tex}
+\input{appendix/glossary.tex}
+\input{appendix/tasklist.tex}
+\input{appendix/view.tex}
+\input{appendix/tables.tex}
+
+%% APPENDIX END 
+\end{document}

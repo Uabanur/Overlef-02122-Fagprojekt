@@ -1,0 +1,8 @@
+\subsection{Performance test  (Magnus)}
+
+We were asked by IBM not to performance test the application. The reason: we are 5 online bank groups, all running on the same z/OS partition on the mainframe. If one group crashes the partition, it affects all groups.\footnote{This actually happened June 13, when a group created 1 million accounts in their application, overloading the database.} But if we \textit{could} performance test our application, how would we do it? 
+
+\textbf{Volume:} The application should be able to store 1 million accounts. This is actually a requirement in section \ref{sec:problemanalysis_requirements}, but we were asked not to test it. The accounts may be unevenly distributed. This can be tested by running a \texttt{for}-loop and creating 1-10 (randomly) accounts for 200 000 customers. This \texttt{for}-loop should be intentionally slowed, so it focuses on volume and not speed.  This may be achieved using the Java \texttt{sleep} method.
+
+\textbf{Speed:}  The application should be able to manage a high number of transactions and logins per second. This can be tested by running a for loop with increasing size $N$ of simple transactions, until it crashes. 
+For example: $N$ times, log in as A $\rightarrow$ send money to B $\rightarrow$ log in as B $\rightarrow$ send money to A. Print current $N$. For best results, we could use a computer cluster with many cores to bombard the application with requests.

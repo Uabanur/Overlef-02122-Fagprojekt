@@ -1,0 +1,22 @@
+\subsection{Functionality tests (Mikkel)}
+\label{sec:functionalitytests}
+Since the program specifications mostly focus on user-interaction, the functionality tests are performed by hand, with program-level verification of correctness. As most of the program requirements are fairly easy to test by hand, we will here highlight some of the requirements that are a bit harder to test for a user, without switching between accounts.
+
+\subsubsection{Performing batch-jobs}
+Performing batch-jobs is done through the administrator page. The batch-jobs would normally only be performed once per week, but for testing purposes, we have not imposed a time limit.
+
+A batch-job consists of two parts:
+\begin{enumerate}
+    \item applying interests to accounts
+    \item moving old transactions to the transaction archive
+\end{enumerate}
+This complies with requirement nr. 10, although it goes a bit beyond, since the requirement only referred to moving elements in the transaction history. 
+
+Pressing the \textit{"Perform batch"} button on the admin page starts the two aforementioned tasks. First, the rate of interest is applied to each account by pulling their current account balance, and multiplying it by the interest bound to it in the database. This can fairly easily be verified by searching for a user, performing a batch job, and noticing that their account balance increased. 
+
+Archiving old transactions is a bit harder to verify, as transaction histories are only shown on a per-user basis on the customer page. In order to verify that archiving elements in the transaction history works, we need to look at the tables in the database, done through Data Studio. Since having a transaction that is a week old takes quite a bit of planning, we instead just perform a transaction and alter its date to be more than a week old. We then execute the batch-jobs from the admin page in order to move the transaction to the transaction archive table in the database. Going back into Data Studio, we can then see that the transaction has successfully been added to the \texttt{TRANSACTIONARCHIVE} table, and removed from the \texttt{TRANSACTIONHISTORY} table, thus verifying that the requirement has been fulfilled.
+
+\subsubsection{Scalability}
+For the purposes of this project, we were given a small partition of a database. This means that actually creating a million accounts is not possible, as we would simply run out of space, and thus testing requirement nr. 11 is not feasible. We can, however, comment on the scalability of our data structures. 
+
+An example of how we have structured our program for scalability can be seen in how we store accounts in the database. The primary key of the \texttt{ACCOUNTS} table is represented by an auto-incrementing integer. This means that the number of accounts is only limited by the number of integers possible for the system, which is well above the required one million accounts. For the database as a whole, we have minimized the repetition of data between tables. Not only does this minimize the space we take on the partition as a whole, it also makes it so our application supports one user having a million accounts, as well as one million users having one account each. As the only part of our program affected by the total amount of data in the database are the SQL statements, and in extension the database itself, we can then conclude that our program can theoretically support one million accounts, as the IBM database allows for this, if not more.

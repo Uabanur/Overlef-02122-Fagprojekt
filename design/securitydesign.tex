@@ -1,0 +1,16 @@
+\subsection{Security design (Roar)} 
+\label{sec:securitydesign}
+
+When developing applications, and web applications in particular, it is of most importance that the application is secure. Securing an application is not a simple task, and is comprised of several aspects. We focused on the following:
+
+\textbf{Passwords} should not be shown during the login, and encrypted when stored, ensuring that if a data leak of usernames and encrypted passwords should occur, it would be difficult to gain access to the accounts.
+
+\textbf{Input sanitation} should be enforced, making sure that the application behaves as expected. Managing all input such as search tokens for SQL queries, and transfer amounts.
+
+\textbf{Authority levels} are needed to differentiate between what customers and managing partners (admins) are able to do/see. 
+
+\textbf{URLs} should not show confidential information or let other customers gain access to an account by entering the URL directly without logging in.
+
+\textbf{Database} errors must be contained, keeping data uncompromised. It must be possible to regain the data from before the error occurred. 
+
+When implementing the application, these precautions must be kept in mind, to make the application as robust as possible. In case of an action which violates one of these security aspects (or other illegal actions) an appropriate error message should be given to the user, letting the user know that the action was not performed.

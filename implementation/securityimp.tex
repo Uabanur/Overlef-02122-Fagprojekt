@@ -1,0 +1,13 @@
+\subsection{Security implementation (Roar)}
+
+In order to integrate the security aspects as outlined in the design section \ref{sec:securitydesign}, several implementations are performed. 
+
+\textbf{Hiding passwords} is done by using type "hidden" in the input form, in the loginPage.jsp page. 
+
+\textbf{URL} data leak is avoided by sending the form to the main servlet's \texttt{post} method. This ensures that no field information is shown in the URL.
+
+\textbf{Authority levels} are managed using a \texttt{User} class which is extended by a \texttt{Customer} and an \texttt{Admin} class. The different features are controlled by checking if the user is a customer or an admin. 
+
+\textbf{Sanitizing input} is more complex. One of the simpler sanitizations is checking that transferred amounts only contains numbers, the value is positive, and the account has sufficient funds. Other sanitation implementations, are when a new customer is created; since usernames are kept unique and only comprised of lower case characters, this is ensured before creating the new customer. Another important input sanitation is when the user enters the username. Since this username is used in an SQL statement, SQL injections must be prevented. This is done using \texttt{PreparedStatement}, which distinguishes between executable SQL code and search tokens.
+
+1The \textbf{database} connection is controlled in the highest control class \texttt{DefaultSevlet}, to make sure that all actions using the database are executed properly with the connection open. Maintaining the connection in the highest control class ensures that no deadlock is accidentally met, since all necessary database changes (requested from the user) are executed locally initially, and then committed as a whole, with the connections \texttt{autoCommit} feature set to false. If a database error occurs, it is then possible to rollback to the previous state of the data, since the changes are not yet committed. 

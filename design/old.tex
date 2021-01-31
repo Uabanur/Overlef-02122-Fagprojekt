@@ -1,0 +1,40 @@
+
+\subsection{Design evolution (Roar)}
+
+Since the case description is rather precise, the flexibility in ther overall design was not as broad as in other assignments. A netbank application with specific requirements were descibed, as seen in previous sections, which guides the design of the application in the given direction. 
+
+Where this assignment gives freedom to the developers are in the implementation of the application. At first the application was implemented completely locally without a database connection. A simulated database was implemented by storing the data in arrays. The main logic of the first versions of the program was implemented using JUnit testing. This way the core of the application was verified to work correctly. Later, when the database was incorporated, knowing that the core worked as expected was a great asset. 
+
+As usual, when new features are incorporated in the application, new difficulties and bugs are introduced, which needs to be tackled. This iteratively evolves and improves the robustnes of the program. The design pattern and classes are maintained, but the content is updated and improved.
+
+This way, the overall design of the resulting program largely resembles the early versions. 
+
+
+\subsection{Security (Roar)}
+
+When implementing an application, and in particular a web application, security is very important. For an application to be secure several aspects must be considered. 
+
+User input sanitation is important for a robust program. It is expected that a program does not crash or throw error messages, if a user enters the wrong data. In order not to keep the program from evaluating the wrong kind of data, the input is sanitized and errors are handled before the input is used further.
+
+Important features of the program, such as changing the interest or managing accounts, are only allowed for admins. Customers are not allowed to change their interest rate as they please. This should only be allowed by contacting an admin. Admins are not allowed to alter the balance of an account, since this would give them the opportunity to forge money for their own private customers accounts. 
+
+Storing passwords in the raw form, is often a bad idea. If one should get their hands on the data, it is possible to login as any user with their username and password. A better solution is to transform the password into a hashcode representing the information of the password. This way when a user enters their password, the hascode is computed and the two hashes are compared. This way authorization can be checked without knowing the content of the password in the database. If one should get their hands on the hashed passwords, it would be difficult to get the original password. Entering the hashed password would not work either, since it would be hashed again, and therefore not match the stored password's hashcode.
+
+When entering the password during the login, the password should be hidden (e.g. by dots), to prevent others to know the password.
+
+Showing data in the URL is also an exploit which can be misused. When a user enters e.g. their password, it should not be displayed in their URL for everyone to see. This is circumvented by using the post method in ther java servlet, thereby not showing the parameters in the URL. This way user cannot gain access to another users page by copying their URL address. 
+
+SQL injections are also a common threat for web applications. Collecting the input from the user and executing the queries directly could cause problems, if the user enters SQL code. If there is not differentiated between input strings and executable code, then SQL injections are possible. A possibility in java is to setup the query in a PreparedStatement which distinguishes code from input. 
+
+If an error occurs in the database and data is either lost or mistreated, it should be possible to regain the information before the faulty execution. This is possible by not enabling autocommit in Java's jdbc connection. This way, the commit is only completed when it is ensured that the query was executed succesfully.
+
+
+password hashing, sanitization, SQL injection, admin (admin-only actions only in admin page), post-methods (no info in URL), passwords in dots
+
+
+
+\subsection{UI figures}
+customer page, admin page, login page, create new user page
+
+\subsection{Use cases}
+use case figures

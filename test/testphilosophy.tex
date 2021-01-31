@@ -1,0 +1,6 @@
+\subsection{Test philosophy (Roar)}
+ %Tests mainly used to create test-driven foundation for app class (core logic independent on database and view)
+ 
+Automatic tests were used in the preliminary versions of the program, by JUnit tests. Since many features of the web program uses input from the View modules (user interface), testing becomes more involved. Back-end testing is preferred to validate the program below the presentation layer, in order to test the core of the program. We tested the core before it was integrating into a web application, which test the same features, but is easier to implement.
+ 
+Other tests, like functionality tests were tested through the UI, and therefore performed in the later versions of the program. We could verify the results in database through Data Studio.

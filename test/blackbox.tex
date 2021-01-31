@@ -1,0 +1,26 @@
+\subsection{Black box test (Mikkel)}
+
+% \begin{mdframed}[backgroundcolor=black!5]
+% funktionel test (ekstern test/black-box test) til at retfærdiggøre at
+% ethvert krav fra kravspecifikationen er opfyldt (og at
+% sammensætningen af de enkelte metoder virker efter
+% hensigten).
+%  \end{mdframed}
+ 
+\subsubsection{Focus group}
+In order to test the ease-of-use of our application, we wrote a list of tasks (see appendix \ref{tasklist}) a completely new user should be able to perform in 10 minutes or less without guidance. We then sent this to various users, garnering the following results.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|} \hline 
+        \textbf{Participants} & \textbf{Average time spent on tasks} & \textbf{Average age}\\ \hline
+        7 & 6.8 minutes & 38.4 \\ \hline
+    \end{tabular}
+    \label{tab:focus_test_results}
+\end{table}
+
+%Non-technical focus group used our application, with focus on ease of use
+As we can see, the average time spent on the tasklist is well below the estimated 10 minutes. This is a remarkable success, and we can confidently state that requirement nr. 12 has been fulfilled, even though the sample size was relatively small. 
+ 
+\subsubsection{JUnit tests of application}
+The JUnit tests were primarily used to ensure stability in the primary functions of the program. These correspond to actions such as creating users and accounts, as well as transferring money. As these are the actions users will mostly perform, it is important that they can be executed reliably. The tests primarily concern the same subjects as the ones on the task list we distributed for requirement 12, which can be seen in the appendix, section \ref{tasklist}.  
